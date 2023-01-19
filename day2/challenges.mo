@@ -49,7 +49,8 @@ actor {
     let dupes = Buffer.Buffer<Nat>(a.size());
 
     for (num in a.vals()) {
-      if (hasDuplicate(a, num)) {
+      let matches : [Nat] = Array.filter<Nat>(a, func x = num == x);
+      if (matches.size() > 1) {
         if (not Buffer.contains<Nat>(dupes, num, func(x: Nat, y: Nat) : Bool { x == y})) dupes.add(num);
       }
     };
@@ -73,18 +74,6 @@ actor {
     };
 
     return result;
-  };
-
-  // private functions
-  func hasDuplicate(arr : [Nat], num : Nat) : Bool {
-    var occurrences : Nat = 0;
-
-    for (element in arr.vals()) {
-      if (element == num) occurrences := occurrences + 1;
-      if (occurrences > 1) return true;
-    };
-
-    return false;
   };
 
 }

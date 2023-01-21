@@ -3,7 +3,7 @@ import List "mo:base/List";
 import Utils "utils";
 import Book "book";
 
-actor Challenge {
+actor {
 
   // Variables of type Book
   let book1 : Book.Book = {
@@ -24,8 +24,8 @@ actor Challenge {
     book_list := List.push(abook, book_list);
   };
 
-  // function to get books as an array
-  public query func get_books() : [Book.Book] {
+  // function to get books as an array of Book
+  public query func get_books() : async [Book.Book] {
     List.toArray<Book.Book>(book_list);
   };
 

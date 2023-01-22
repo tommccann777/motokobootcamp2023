@@ -1,0 +1,3 @@
+1. Heap memory is NOT saved during an upgrade. The size of heap memory is 4Gb.
+2. A principal can have 4,294,967,295 subaccounts
+3. Changes to the canister interface (types, functions and their arguments) have the capacity to break an existing dapp. However, in the example shown, although the dapp continues to send firstname and surname, only the firstname will be used by the greet function. In this case the intended functionality (greeting by firstname) will work.

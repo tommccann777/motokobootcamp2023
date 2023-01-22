@@ -1,7 +1,8 @@
 import List "mo:base/List";
 import Array "mo:base/Array";
 import Buffer "mo:base/Buffer";
-import HashMap "mo:base/Hashmap";
+import HashMap "mo:base/HashMap";
+import Iter "mo:base/Iter";
 import Principal "mo:base/Principal";
 
 actor Challenge {
@@ -27,22 +28,22 @@ actor Challenge {
     unique_list;
   };
 
-/* work in progress - I can't get the syntax correct
 
   func unique<T> (alist : List.List<T>, equal: (T,T) -> Bool) : List.List<T> {
     var an_array : [T] = List.toArray<T>(alist);
-    let nodupes = Buffer.Buffer<Nat>(an_array.size());
+    let nodupes = Buffer.Buffer<T>(an_array.size());
 
     for (element : T in an_array.vals()) {
-      if (Buffer.contains(nodupes, element, equal) == false) nodupes.add(element);
+      if (Buffer.contains<T>(nodupes, element, equal) == false) nodupes.add(element);
     };
 
-    var resultbuf : [T] = Buffer.toArray(nodupes);
-    List.fromArray(resultBuf);
-  };
-*/
+    let result : [T] = Buffer.toArray(nodupes);
 
-  func reverse<T>(l : List.List<T>) : async List.List<T> {
+    List.fromArray<T>(result);
+  };
+
+
+  func reverse<T>(l : List.List<T>) : List.List<T> {
     return List.reverse(l);
   };
 
@@ -50,7 +51,4 @@ actor Challenge {
     Buffer.indexOf(val, buf, equal);
   };
 
-
-
 };
-
